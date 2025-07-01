@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
  * IoTDevice model class.
  * Represents an IoT device with attributes for name, type, status, and last communication timestamp.
  */
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class IoTDevice {
     private Integer id;
     private String name;
@@ -18,44 +17,51 @@ public class IoTDevice {
 
     private LocalDateTime lastCommunicationTimestamp;
 
-    public Integer getId() {
-        return id;
+    public IoTDevice() {
+    }
+
+    public IoTDevice(Integer id, String name, String type, boolean active, LocalDateTime lastCommunicationTimestamp) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.active = active;
+        this.lastCommunicationTimestamp = lastCommunicationTimestamp;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
+    public void setLastCommunicationTimestamp(LocalDateTime lastCommunicationTimestamp) {
+        this.lastCommunicationTimestamp = lastCommunicationTimestamp;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public LocalDateTime getLastCommunicationTimestamp() {
         return lastCommunicationTimestamp;
-    }
-
-    public void setLastCommunicationTimestamp(LocalDateTime lastCommunicationTimestamp) {
-        this.lastCommunicationTimestamp = lastCommunicationTimestamp;
     }
 
     @Override
@@ -64,7 +70,6 @@ public class IoTDevice {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", active=" + active +
                 ", lastCommunicationTimestamp=" + lastCommunicationTimestamp +
                 '}';
     }
