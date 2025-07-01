@@ -7,9 +7,10 @@ import com.spring_iot_api.domain.IoTDevice;
 import com.spring_iot_api.service.IoTDeviceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -24,14 +25,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(IoTDeviceController.class)
+@ExtendWith(MockitoExtension.class)
 public class IoTDeviceControllerTest {
 
-    @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     private IoTDeviceService service;
+
+    @InjectMocks
+    private IoTDeviceController controller;
 
     private final ObjectMapper objectMapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
@@ -39,9 +42,9 @@ public class IoTDeviceControllerTest {
 
     @BeforeEach
     void setUp() {
-        IoTDeviceController controller = new IoTDeviceController(service);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
+
     /**
      * Test GET /api/devices
      * Verifies that all IoT devices are returned with HTTP 200 OK.
