@@ -20,7 +20,7 @@ A Spring Boot RESTful API for managing IoT devices, supporting CRUD operations w
   "name": "Temperature Sensor",
   "type": "Sensor",
   "active": true,
-  "lastCommunication": "2025-07-01T10:00:00"
+  "lastCommunicationTimestamp": "2025-07-01T10:00:00"
 }
 ```
 - **GET** `/api/devices/1` - Get a device by ID
